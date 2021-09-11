@@ -1,0 +1,36 @@
+# Software Intention
+The intention of this software is to demonstrate coding skills learnt in the GEOG5003M module
+through a model that:
+      1. Takes in data.
+      2. Processes the data.
+      3. Makes calculations based on the data.
+      4. Displays the results on a GUI.
+      5. Is controlled by a user through the GUI.
+      6. Writes the results out to a file.
+## Development Issues
+The main issues during development of this model came through steps 1 and 2 of the above list.
+When taking in the data, various white spaces appeared in the datasets which had to be 
+manipulated before analysis could begin. Additionally, local Wi-Fi issues occured during this 
+stage which meant the download code had to be commented out. This then had to be adapted after
+the Wi-Fi issues were resolved as errors kept recurring. When completing data processing, 
+values, lists and indexes became intertwined and in a way fused together. Detailed investigation 
+of the datasets, defined lists and indexes was necessary to complete analysis. Much of this code
+has been removed for aesthetic purposes.
+### Software development process followed
+The development process followed with this model was a very methodical, step-by-step process:
+      1. Read in input data files adn write out to local files
+      2. Clean up input files.
+      3. Read in these files into lists of lists.
+      4. Visualise the datasets using matplotlib.
+      5. Identify areas of ice, storing the locations and values.
+      6. Perform a series of calculations to find the mass of the ice.
+      7. Determine if the iceberg can be towed.
+      8. Write results out to a file.
+      9. Re-visit above code and optimise
+      The above was coded in a very basic way, with functions not being utilised as yet.
+      10. Adapt read-in code into a function
+      11. Initialise and GUI
+      12. Adapt code from steps 3, 4, and 5 into functions for better integration with the GUI.
+      13. Create a quit function to close the GUI once the user is finished with the model.
+      
+      
