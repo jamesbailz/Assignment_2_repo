@@ -1,0 +1,4 @@
+Above surface volume: 13853295.5
+Subsurface volume: 138532955.0
+Total ice volume: 152386250.5
+Total mass: 137147625450.0
