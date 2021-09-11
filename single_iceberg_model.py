@@ -7,8 +7,18 @@ Also appearing on the GUI are 'data inputs', 'show results' and
 'close window' buttons. 
 Data inputs shows the two input files in a graphical format.
 Show results shows the calculation results, only after the program is run.
-Close window closes the window and ends the program.
-When you run the code, a message will appear 
+Close window closes the window, writes output data to a file and 
+ends the program.
+When you run the code, a message will appear on the GUI 'Program Running'.
+The buttons are for the user to interact with the program inputs/ outputs.
+
+Program functions:
+    download
+    pull_heights
+    calculations
+    show_graphs
+    show_results
+    quit
 
 """
 print ("Program Starting")
@@ -67,6 +77,7 @@ Stage 3: Reading csv data into lists
 """
 print ("Reading csv data")
 #Reading csv into lidar
+#Lidar represents the height of the pixel within the environment
 lidar = []
 with open ('Lidar.txt', newline = '') as f1:
     reader = csv.reader (f1, quoting=csv.QUOTE_NONNUMERIC)
@@ -90,6 +101,7 @@ lidar_clean = [x for x in lidar if x != []]
 # print (type(lidar_clean))
 # print ("Lidar length = ", len(lidar_clean))
 #Reading csv into radar
+#Radar represents ice or water within the environment
 radar = []
 with open ('Radar.txt', newline = '') as f2:
     reader2 = csv.reader (f2, quoting=csv.QUOTE_NONNUMERIC)
@@ -241,6 +253,8 @@ print ("Calculation time: ", calculation_time)
 #     FO.write ("Subsurface volume: " + str(ice_volume_subsurface) + '\n')
 #     FO.write ("Total ice volume: " + str(ice_volume) + '\n')
 #     FO.write ("Total mass: " + str(ice_mass) + '\n')
+# Section moved to after GUI is completed as to access global variables 
+# within calculations function
     
 """
 Stage 6: Initialise and populate GUI
@@ -263,6 +277,16 @@ run_btn.pack (side= 'top', fill= 'both')
 
 #Show input data graphs
 def show_graphs ():
+    """
+    Generates two figures simultaneously displaying lidar and radar input
+    datasets. 
+    Figures will appear in individual pop-up windows.
+
+    Returns
+    -------
+    None.
+
+    """
     plt.ylim = (0, 300)
     plt.xlim = (0, 300)
     #Set up lidar plot to figure 1
@@ -329,11 +353,14 @@ def quit (event=None):
     root.destroy ()
     
 #Create and pack buttons
+#Button to quit window
 quit_btn = tkinter.Button (root, text= 'Close Window', command = quit)
 quit_btn.pack (side='bottom', fill= 'both')
+#Button to show results
 results_btn = tkinter.Button (root, text= 'Show Results', \
                               command = show_results, state= "disabled")
 results_btn.pack (side='bottom', fill= 'both')
+#Button to show graphs
 graph_btn = tkinter.Button (root, text= 'Data inputs', command = show_graphs)
 graph_btn.pack (side= 'bottom', fill= 'both')
 #Activate window
@@ -347,6 +374,10 @@ with open ("Data_out.txt", 'w') as FO:
     FO.write ("Subsurface volume: " + str(ice_volume_subsurface) + '\n')
     FO.write ("Total ice volume: " + str(ice_volume) + '\n')
     FO.write ("Total mass: " + str(ice_mass) + '\n')
+    if ice_mass > 36000000:
+        FO.write ("Iceberg cannot be towed")
+    else:
+        FO.write ("Iceberg can be towed")
 
 #Finish program
 print ("Program Ended")
